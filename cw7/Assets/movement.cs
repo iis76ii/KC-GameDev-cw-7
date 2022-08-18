@@ -8,11 +8,12 @@ public class movement : MonoBehaviour
     public float inc;
     public float minpos;
     public float maxpos;
+    AudioSource src;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        src = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,12 +36,17 @@ public class movement : MonoBehaviour
     {
        if(collision.gameObject.tag == "enemy")
         {
-            Invoke("restart", 1f);
+            
+            Invoke("restart", 1.5f);
+            playaudio();
         }
     }
     void restart()
     {
         SceneManager.LoadScene(0);
     }
-
+    void playaudio()
+    {
+        src.Play();
+    }
 }
